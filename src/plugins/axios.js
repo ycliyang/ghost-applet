@@ -1,12 +1,6 @@
-/**
- *
- * http配置
- *
- */
-
 import axios from 'axios'
 import store from '../store'
-import {getToken, getAppId} from '@/util/auth'
+import {getToken, getAppId} from '@/utils/auth'
 import {Message} from 'element-ui'
 import errorCode from '@/const/errorCode'
 import NProgress from 'nprogress' // progress bara
@@ -20,8 +14,8 @@ NProgress.configure({showSpinner: false})// NProgress Configuration
 // HTTPrequest拦截
 axios.interceptors.request.use(config => {
   NProgress.start() // start progress bar
-  if (store.getters.access_token) {
-    config.headers['Authorization'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+  if (store.getters.accessToken) {
+    config.headers['Authorization'] = getToken()
   }
   config.headers['appId'] = getAppId()
   return config
@@ -57,7 +51,6 @@ axios.interceptors.response.use(data => {
   return Promise.reject(new Error(error))
 })
 
-export default axios
 
 export const get = (url, data) => {
   return axios.get(url, {params: data})
@@ -75,11 +68,6 @@ export const postForm = (url, data) => {
   }
   const param = new URLSearchParams(form)
   return axios.post(url, param)
-  //   , {
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data'
-  //   }
-  // }
 }
 
 export const del = (url, data) => {
@@ -89,3 +77,5 @@ export const del = (url, data) => {
 export const put = (url, data) => {
   return axios.put(url, data)
 }
+
+export default axios

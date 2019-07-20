@@ -1,36 +1,61 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
-    </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view v-if="show"></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  import {mapGetters} from "vuex"
+
+  export default {
+    name: 'app',
+    data() {
+      return {
+        show: false
+      }
+    },
+    computed: {
+      ...mapGetters(["accessToken"])
+    },
+    mounted() {
+      if (!this.accessToken) {
+        this.$router.push('login')
+      }
+      this.show = true
+    },
+
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  html {
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  #app > div:first-child {
+    height: 100%;
+  }
+
+  body {
+    margin: 0px !important;
+    height: 100vh;
+    text-align: left;
+  }
+
 </style>

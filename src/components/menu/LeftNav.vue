@@ -1,20 +1,18 @@
 <template>
-  <div class="menu-left-nav">
-
-  </div>
+  <div class="menu-left-nav"></div>
 </template>
 
-<script>
-  export default {
-    name: "MenuLeftNav",
-    methods: {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 
-    }
-  };
+@Component({
+  name: 'MenuLeftNav',
+  methods: {}
+})
+export default class LeftNav extends Vue {}
 </script>
 
 <style lang="scss">
-  .menu-left-nav {
-
-  }
+.menu-left-nav {
+}
 </style>

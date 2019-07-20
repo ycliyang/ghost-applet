@@ -9,12 +9,15 @@ export default new Vuex.Store({
     accessToken: null,
     userInfo: {}
   },
-  mutations: {
-    setAccessToken(state,token){
-      state.accessToken = token
+  getters: {
+    accessToken: state => {
+      return state.accessToken
     }
   },
-  actions: {
-
+  mutations: {
+    setAccessToken(state, token) {
+      state.accessToken = token;
+    }
   },
+  actions: {},
 });
