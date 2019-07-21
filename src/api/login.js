@@ -10,7 +10,7 @@ export const loginAccount = (userInfo) => {
     param: ['password']
   })
 
-  let grantType = 'password'
+  let grant_type = 'password'
   let scope = 'server'
   return request({
     url: '/auth/oauth/token',
@@ -23,8 +23,9 @@ export const loginAccount = (userInfo) => {
       password: user.password,
       randomStr: user.randomStr,
       code: user.code,
-      grantType,
+      grant_type,
       scope
     }
   })
 }
+

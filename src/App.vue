@@ -6,7 +6,7 @@
 
 <script>
 
-  import {mapGetters} from "vuex"
+  import {store} from '@/utils/utils';
 
   export default {
     name: 'app',
@@ -15,12 +15,11 @@
         show: false
       }
     },
-    computed: {
-      ...mapGetters(["accessToken"])
-    },
-    mounted() {
-      if (!this.accessToken) {
+    created() {
+      if (!this.$store.getters.accessToken) {
         this.$router.push('login')
+      // }else {
+      //   this.$router.push('home')
       }
       this.show = true
     },
@@ -43,7 +42,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: #f5f5f5;
     height: 100%;
     box-sizing: border-box;
   }

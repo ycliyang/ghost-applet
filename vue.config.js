@@ -1,6 +1,5 @@
-
-
-var baseUrl = 'http://localhost:14000';
+let baseUrl = 'http://103house.com'
+// let baseUrl = 'http://localhost:14000'
 
 
 module.exports = {
@@ -20,6 +19,27 @@ module.exports = {
           '^/auth': '/auth'
         }
       },
+      '/admin': {
+        target: baseUrl,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/admin': '/admin'
+        }
+      },
+      '/shop': {
+        target: baseUrl,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/shop': '/shop'
+        }
+      },
+      '/pub/shop': {
+        target: baseUrl,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/pub/shop': '/pub/shop'
+        }
+      }
     }
   }
 
