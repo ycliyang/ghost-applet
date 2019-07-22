@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home-space">
 
     <el-container>
 
@@ -8,9 +8,9 @@
       </el-aside>
       <el-main>
 
-        <!--<el-header>-->
-          <!--<i class="icon-font el-icon-s-fold menu-collapse"></i>-->
-        <!--</el-header>-->
+        <el-header>
+          <span>ss</span>
+        </el-header>
 
       </el-main>
     </el-container>
@@ -29,7 +29,7 @@
 </script>
 
 <style lang="scss">
-  .home {
+  .home-space {
     .el-container {
       height: 100%;
       border: 1px solid #eee

@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Login from './views/Login.vue';
+import HomeSpace from './views/HomeSpace.vue';
+import PageStructure from './views/PageStructure';
 
 Vue.use(Router);
 
@@ -11,8 +12,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'homeSpace',
+      component: HomeSpace,
+      children: [{
+        path: 'structure',
+        name: 'structure',
+        component: PageStructure
+      }]
     },
     {
       path: '/login',
