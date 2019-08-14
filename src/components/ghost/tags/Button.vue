@@ -10,6 +10,7 @@
 
   export default {
     name: "ghost-button",
+    dom:{tag:'button',name:'按钮'},
     mixins: [mx]
   }
 </script>

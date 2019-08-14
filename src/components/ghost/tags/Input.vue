@@ -8,6 +8,7 @@
 
   export default {
     name: "ghost-input",
+    dom:{tag:'input',name:'输入框'},
     mixins: [mx]
   }
 </script>

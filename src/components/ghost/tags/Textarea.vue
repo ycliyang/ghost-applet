@@ -8,6 +8,7 @@
 
   export default {
     name: "ghost-textarea",
+    dom:{tag:'textarea',name:'多行输入框'},
     mixins: [mx]
   }
 </script>

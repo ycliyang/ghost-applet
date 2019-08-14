@@ -8,8 +8,8 @@
       </el-aside>
       <el-main>
 
-        <el-header>
-          <span>ss</span>
+        <el-header style="height: 51px;padding:0px;line-height: 50px;">
+          <menu-top-nav></menu-top-nav>
         </el-header>
 
       </el-main>
@@ -20,9 +20,10 @@
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator";
   import MenuLeftNav from "@/components/menu/LeftNav.vue";
+  import MenuTopNav from '@/components/menu/TopNav.vue';
 
   @Component({
-    components: {MenuLeftNav},
+    components: {MenuTopNav, MenuLeftNav},
   })
   export default class Home extends Vue {
   }

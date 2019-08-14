@@ -12,6 +12,8 @@
 
   export default {
     name: "ghost-view",
+    model:{name:'view'},
+    dom:{tag:'view',name:''},
     mixins: [mx]
   }
 </script>
