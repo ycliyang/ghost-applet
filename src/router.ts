@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from './views/Login.vue';
 import HomeSpace from './views/HomeSpace.vue';
-import PageStructure from './views/PageStructure';
+import PageStructure from './views/PageStructure.vue';
 
 Vue.use(Router);
 
