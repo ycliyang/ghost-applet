@@ -1,24 +1,41 @@
-// 导入koa，和koa 1.x不同，在koa2中，我们导入的是一个class，因此用大写的Koa表示:
 const Koa = require('koa');
-
-// 创建一个Koa对象表示web app本身:
 const app = new Koa();
+const mongoose = require('mongoose');
+const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
+const cors = require('koa2-cors');
+const {connectDB, initSchemas} = require('./database/initDatabase.js');
 
-// 对于任何请求，app将调用该异步函数处理请求：
-app.use(async (ctx, next) => {
-  await next();
-  ctx.response.type = 'text/html';
-  ctx.response.body = '<h1>Hello, koa2!</h1>';
+// bodyParser 和 cors 这两个中间件必须放在最前面使用，否则会失效
+
+// 在app上使用cors中间件来实现后台处理前端请求跨域问题
+app.use(cors());
+// 在app上使用bodyParser中间件来处理POST请求传递来的参数
+app.use(bodyParser());
+
+let user = require('./appApi/User.js');
+
+let goods = require('./appApi/Goods.js');
+
+// 装载所有的子路由
+let router = new Router();
+router.use('/user',user.routes());
+router.use('/goods',goods.routes());
+
+// 在app上加载路由中间件
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+// 立即执行函数里执行连接数据库操作
+;(async()=>{
+  await connectDB();
+  initSchemas();
+})()
+
+app.use(async(ctx)=>{
+  ctx.body = 'Hello Koa!';
+})
+
+app.listen(3000,()=>{
+  console.log('[Server] Starting at port 3000');
 });
-
-// 在端口3000监听:
-app.listen(3000);
-console.log('app started at port 3000...');
-
-// sync (ctx, next) => {
-//   await next();
-//   // 设置response的Content-Type:
-//   ctx.response.type = 'text/html';
-//   // 设置response的内容:
-//   ctx.response.body = '<h1>Hello, koa2!</h1>';
-// }
