@@ -5,7 +5,7 @@ let router = new Router();
 
 // 批量导入商品详情信息
 router.get('/insertAll', async(ctx)=>{
-  fs.readFile('./data_json/newGoods.json', 'utf8', (err, data)=>{
+  fs.readFile('./dataBak/newGoods.json', 'utf8', (err, data)=>{
     let readData = JSON.parse(data);
     let saveCount = 0;
     const Goods = mongoose.model('Goods');

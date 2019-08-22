@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const cors = require('koa2-cors');
-const {connectDB, initSchemas} = require('./database/initDatabase.js');
+const {connectDB, initSchemas} = require('./initDatabase.js');
 
 // bodyParser 和 cors 这两个中间件必须放在最前面使用，否则会失效
 
@@ -13,14 +13,11 @@ app.use(cors());
 // 在app上使用bodyParser中间件来处理POST请求传递来的参数
 app.use(bodyParser());
 
-let user = require('./appApi/User.js');
-
-let goods = require('./appApi/Goods.js');
+let pageController = require('./controller/pageController.js');
 
 // 装载所有的子路由
 let router = new Router();
-router.use('/user',user.routes());
-router.use('/goods',goods.routes());
+router.use('/page',pageController.routes());
 
 // 在app上加载路由中间件
 app.use(router.routes());

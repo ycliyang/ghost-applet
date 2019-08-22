@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const db = "mongodb://localhost/smile-db";
+// const db = "mongodb://admin:123456@mongodb.dev:27017/page";
+const db = "mongodb://mongodb.dev:27017/page";
 const glob = require('glob'); // 引入glob模块是为了解决全局使用 * 通配符的问题，glob模块允许使用 * 号作为全局通配符
 const { resolve } = require('path'); // 引入resolve 模块是为了将一系列路径或路径段解析为绝对路径。
 
@@ -7,6 +8,7 @@ mongoose.Promise = global.Promise;
 
 // 优雅地将所有schema映射模型一次性全部引入
 exports.initSchemas = () => {
+    console.log('--------> schema')
     glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require);
 }
 
